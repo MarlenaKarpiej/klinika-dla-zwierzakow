@@ -9,8 +9,8 @@
 <fieldset>
     <legend>Menu</legend>
 <a href="index">Strona główna</a> |
-<a href="add-owner">Dodaj nowego wlasciciela</a> |
-<a href="list-owner">Lista wlasciciela</a> |
+<a href="form">Dodaj nowego wlasciciela</a> |
+<a href="list-owner">Lista wlascicieli</a> |
 
 </fieldset>
 <br clear="all"/>
