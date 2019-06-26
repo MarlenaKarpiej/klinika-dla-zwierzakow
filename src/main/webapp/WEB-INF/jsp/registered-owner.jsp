@@ -14,7 +14,7 @@ Imie: ${owner.firstName}<br />
 Nazwisko: ${owner.lastName}<br />
 Miasto: ${owner.city}<br />
 Adres: ${owner.address}<br />
-Telefon: ${owner.elephoneNumber}<br />
+Telefon: ${owner.telephoneNumber}<br />
 
 </body>
 </html>

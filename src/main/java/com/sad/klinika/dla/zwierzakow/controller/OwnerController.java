@@ -11,6 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -31,6 +35,15 @@ public class OwnerController {
     @GetMapping("/list")
     public Iterable<OwnerEntity> getOwnerList() {
         return ownerRepository.findAll();
+    }
+
+    @PostMapping("/batch-save")
+    public List<Long> saveOwnerList(@RequestBody List<OwnerEntity> ownerEntities) {
+        Iterable<OwnerEntity> savedEntities = ownerRepository.saveAll(ownerEntities);
+
+        return StreamSupport.stream(savedEntities.spliterator(), false)
+                .map(OwnerEntity::getId)
+                .collect(Collectors.toList());
     }
 
 

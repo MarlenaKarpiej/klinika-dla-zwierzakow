@@ -7,7 +7,8 @@
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
-<form:form action="/form" method="post" modelAttribute="newOwner">
+
+<form:form action="/registered-owner" method="post" modelAttribute="newOwner">
     Imie: <form:input path="firstName"/><br />
     Nazwisko: <form:input path="lastName"/><br />
     Miasto: <form:input path="city"/><br />
