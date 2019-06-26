@@ -15,6 +15,8 @@ import java.util.Optional;
 
 @Controller
 public class OwnerView {
+
+    @Autowired
     private OwnerRepository ownerRepository;
 
     @Autowired
@@ -40,10 +42,10 @@ public class OwnerView {
         return "registered-owner";
     }
 
-    @GetMapping("/owner-list")
+    @GetMapping("/list-owner")
     public String ownerList(Model model){
         model.addAttribute("allOwners", ownerRepository.findAll());
-        return "owner-list";
+        return "list-owner";
     }
 
     @GetMapping("/delete-owner")
@@ -60,14 +62,14 @@ public class OwnerView {
             model.addAttribute("owner", maybeOwner.get());
             return "edit-owner";
         } else{
-            return "redirect:/add-owner";
+            return "redirect:/form";
         }
     }
 
     @PostMapping("/edit-owner")
     public String editOwnerPost (@ModelAttribute("owner") OwnerEntity ownerEntity){
         ownerRepository.save(ownerEntity);
-        return "redirect:/list";
+        return "redirect:/list-owner";
     }
 
 

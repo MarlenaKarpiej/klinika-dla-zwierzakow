@@ -3,7 +3,7 @@ package com.sad.klinika.dla.zwierzakow.controller;
 import com.sad.klinika.dla.zwierzakow.domain.entity.OwnerEntity;
 import com.sad.klinika.dla.zwierzakow.domain.repository.OwnerRepository;
 import com.sad.klinika.dla.zwierzakow.service.OwnerService;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
