@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -5,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lisa właścicieli</title>
+    <title>Klinika dla zwierząt</title>
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
@@ -16,7 +17,7 @@
     <c:out value="${owner.city}" />
     <c:out value="${owner.address}" />
     <c:out value="${owner.telephoneNumber}" />
-    <a href="delete-owner?id=${owner.id}">Usun</a>
+    <a href="delete-owner?id=${owner.id}">Usuń</a>
     <a href="edit-owner?id=${owner.id}">Edytuj</a>
     <br/>
 </c:forEach>

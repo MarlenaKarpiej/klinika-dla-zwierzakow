@@ -3,14 +3,11 @@
 
 <!DOCTYPE html>
 
-
-
-
 <fieldset>
-    <legend>Menu</legend>
+    <legend>Klinika dla zwierząt</legend>
 <a href="index">Strona główna</a> |
-<a href="form">Dodaj nowego wlasciciela</a> |
-<a href="list-owner">Lista wlascicieli</a> |
+<a href="form">Dodaj nowego właściciela</a> |
+<a href="list-owner">Lista właścicieli</a> |
 
 </fieldset>
 <br clear="all"/>
