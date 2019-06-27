@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 <fieldset>
-    <legend>Klinika dla zwierząt</legend>
+    <legend>Menu</legend>
 <a href="index">Strona główna</a> |
 <a href="form">Dodaj nowego właściciela</a> |
 <a href="list-owner">Lista właścicieli</a> |

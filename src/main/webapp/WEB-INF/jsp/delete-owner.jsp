@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Klinika dla zwierząt</title>
+    <link href="css/style.css"
+          rel="stylesheet">
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
