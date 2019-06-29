@@ -29,11 +29,11 @@
         <c:out value="${pet.birthDate}"/>
         <c:out value="${pet.petType}"/>
         <a href="/pet/delete-pet/${pet.id}">Usuń</a>
-        <a href="/pet/edit-pet/${pet.id}">Edytuj</a>
+        <a href="/pet/edit-pet/${pet.id}/${owner.id}">Edytuj</a>
         <br/>
     </c:forEach>
-    <a href="delete-owner?id=${owner.id}">Usuń</a>
-    <a href="edit-owner?id=${owner.id}">Edytuj</a>
+    <a href="/delete-owner/${owner.id}">Usuń</a>
+    <a href="/edit-owner/${owner.id}">Edytuj</a>
     <a href="/pet/create/${owner.id}">Dodaj pupila</a>
     <br/>
 </c:forEach>
