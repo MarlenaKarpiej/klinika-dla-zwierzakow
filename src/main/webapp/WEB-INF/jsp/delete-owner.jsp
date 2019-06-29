@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Klinika dla zwierząt</title>
-    <link href="css/style.css"
+    <link href="/css/style.css"
           rel="stylesheet">
 </head>
 <body>

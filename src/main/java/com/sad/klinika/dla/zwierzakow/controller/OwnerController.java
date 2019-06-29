@@ -1,84 +1,90 @@
 package com.sad.klinika.dla.zwierzakow.controller;
 
+
 import com.sad.klinika.dla.zwierzakow.domain.entity.OwnerEntity;
 import com.sad.klinika.dla.zwierzakow.domain.repository.OwnerRepository;
-import com.sad.klinika.dla.zwierzakow.service.OwnerService;
-import lombok.*;
-import lombok.extern.slf4j.Slf4j;
+import com.sad.klinika.dla.zwierzakow.model.FilterForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.Optional;
 
-
-@RestController
-@RequiredArgsConstructor
-@RequestMapping("/owner")
-@Slf4j
+@Controller
 public class OwnerController {
 
-    @Autowired
     private OwnerRepository ownerRepository;
 
-
-    @PostMapping("/create")
-    public OwnerEntity addNewOwner(@RequestBody OwnerEntity ownerEntity) {
-        return ownerRepository.save(ownerEntity);
+    @Autowired
+    public OwnerController(OwnerRepository ownerRepository) {
+        this.ownerRepository = ownerRepository;
     }
 
-
-    @GetMapping("/list")
-    public Iterable<OwnerEntity> getOwnerList() {
-        return ownerRepository.findAll();
+    @GetMapping("/index")
+    public String homePage() {
+        return "index";
     }
 
-    @PostMapping("/batch-save")
-    public List<Long> saveOwnerList(@RequestBody List<OwnerEntity> ownerEntities) {
-        Iterable<OwnerEntity> savedEntities = ownerRepository.saveAll(ownerEntities);
-
-        return StreamSupport.stream(savedEntities.spliterator(), false)
-                .map(OwnerEntity::getId)
-                .collect(Collectors.toList());
+    @GetMapping("/form")
+    public String addOwner(Model model) {
+        model.addAttribute("newOwner", new OwnerEntity());
+        return "form";
     }
 
+    @PostMapping("/registered-owner")
+    public String saveOwner(@ModelAttribute("owner") OwnerEntity ownerEntity){
+        ownerRepository.save(ownerEntity);
+        System.out.println(ownerEntity);
+        return "registered-owner";
+    }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity deleteOwner(@RequestParam("id") Long id) {
-        if (ownerRepository.existsById(id)) {
-            ownerRepository.deleteById(id);
-            return ResponseEntity.status(204).build();
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); //404
+    @GetMapping("/list-owner")
+    public String ownerList(Model model){
+        model.addAttribute("allOwners", ownerRepository.findAll());
+        return "list-owner";
+    }
+
+    @GetMapping("/delete-owner/{ownerId}")
+    public String deleteOwner(@PathVariable("ownerId") Long id) {
+        ownerRepository.deleteById(id);
+        return "delete-owner";
+    }
+
+    @GetMapping("/edit-owner/{ownerId}")
+    public String editOwner(@PathVariable("ownerId") Long id, Model model){
+        Optional<OwnerEntity> maybeOwner = ownerRepository.findById(id);
+
+        if(maybeOwner.isPresent()){
+            model.addAttribute("owner", maybeOwner.get());
+            return "edit-owner";
+        } else{
+            return "redirect:/form";
         }
     }
 
+    @PostMapping("/edit-owner")
+    public String editOwnerPost (@ModelAttribute("owner") OwnerEntity ownerEntity){
+        ownerRepository.save(ownerEntity);
+        return "redirect:/list-owner";
+    }
 
-//    private final OwnerService ownerService;
-//
-//    @GetMapping("/create")
-//    public String createOwnerForm(Model model) {
-//        model.addAttribute("owner", new OwnerEntity());
-//        return "owner/form";
-//    }
-//
-//    @PostMapping("/create")
-//    public String createOwner(@ModelAttribute("owner") OwnerEntity ownerEntity) {
-//        ownerService.createOwner(ownerEntity);
-//        log.info("Created new owner {}", ownerEntity);
-//
-//        return "redirect:/owner/list";
-//    }
-//
-//    @GetMapping("/list")
-//    public String ownerList(Model model) {
-//        Iterable<OwnerEntity> owners = ownerService.getAllOwners();
-//        model.addAttribute("owners", owners);
-//        return "owner/list";
-//    }
+    @GetMapping("/search")
+    public String searchFirstNameAndLastName(Model model) {
+        model.addAttribute("filterForm", new FilterForm());
+        return "search";
+    }
+
+    @PostMapping("/search")
+    public String searchFilter(@ModelAttribute("filterForm") FilterForm filterForm, Model model) {
+        List<OwnerEntity> foundOwner = ownerRepository.findByFirstNameOrLastNameContaining(
+                filterForm.getFirstName(), filterForm.getLastName());
+        model.addAttribute("allOwners", foundOwner);
+        return "list-owner";
+    }
+
+
+
 
 }

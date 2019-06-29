@@ -5,9 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,14 +16,18 @@ import javax.persistence.Id;
 public class OwnerEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //musieliśmy dopisać strategy, ponieważ dodaliśmy już kilku włascicieli w data.sql
     private Long id;
+
 
     private String firstName;
     private String lastName;
     private String city;
     private String address;
     private String telephoneNumber;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "ownerEntity")
+    private List<PetEntity> pets;
 
 
 }

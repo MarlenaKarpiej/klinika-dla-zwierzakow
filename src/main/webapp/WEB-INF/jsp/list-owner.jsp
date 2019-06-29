@@ -7,11 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Klinika dla zwierząt</title>
-    <link href="css/style.css"
+    <link href="/css/style.css"
           rel="stylesheet">
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
+
+<c:if test="${empty allOwners}">
+    <h3>Sorry, no records found</h3>
+</c:if>
 <c:forEach items="${allOwners}" var="owner">
     <c:out value="${owner.id}" />
     <c:out value="${owner.firstName}" />
@@ -19,8 +23,18 @@
     <c:out value="${owner.city}" />
     <c:out value="${owner.address}" />
     <c:out value="${owner.telephoneNumber}" />
+    <c:forEach items="${owner.pets}" var="pet">
+        <c:out value="${pet.id}"/>
+        <c:out value="${pet.name}"/>
+        <c:out value="${pet.birthDate}"/>
+        <c:out value="${pet.petType}"/>
+        <a href="/pet/delete-pet/${pet.id}">Usuń</a>
+        <a href="/pet/edit-pet/${pet.id}">Edytuj</a>
+        <br/>
+    </c:forEach>
     <a href="delete-owner?id=${owner.id}">Usuń</a>
     <a href="edit-owner?id=${owner.id}">Edytuj</a>
+    <a href="/pet/create/${owner.id}">Dodaj pupila</a>
     <br/>
 </c:forEach>
 

@@ -6,9 +6,10 @@
 <fieldset>
     <legend>Menu</legend>
 
-<a href="index">Strona główna</a> |
-<a href="form">Dodaj nowego właściciela</a> |
-<a href="list-owner">Lista właścicieli</a> |
+<a href="/index">Strona główna</a> |
+<a href="/form">Dodaj nowego właściciela</a> |
+<a href="/list-owner">Lista właścicieli</a> |
+<a href="/search">Wyszukaj właściciela</a>
 
 </fieldset>
 <br clear="all"/>

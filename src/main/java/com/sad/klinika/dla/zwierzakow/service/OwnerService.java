@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +20,9 @@ public class OwnerService {
 
     public Iterable<OwnerEntity> getAllOwners(){ //dlaczego z Listą nie działa???
         return ownerRepository.findAll();
+    }
+
+    public Optional<OwnerEntity> findById(Long ownerId){
+        return ownerRepository.findById(ownerId);
     }
 }
