@@ -14,13 +14,13 @@ public class OwnerService {
 
     private final OwnerRepository ownerRepository;
 
-    public void createOwner(OwnerEntity ownerEntity){
-        ownerRepository.save(ownerEntity);
-    }
-
-    public Iterable<OwnerEntity> getAllOwners(){ //dlaczego z Listą nie działa???
-        return ownerRepository.findAll();
-    }
+//    public void createOwner(OwnerEntity ownerEntity){
+//        ownerRepository.save(ownerEntity);
+//    }
+//
+//    public Iterable<OwnerEntity> getAllOwners(){ //dlaczego z Listą nie działa???
+//        return ownerRepository.findAll();
+//    }
 
     public Optional<OwnerEntity> findById(Long ownerId){
         return ownerRepository.findById(ownerId);

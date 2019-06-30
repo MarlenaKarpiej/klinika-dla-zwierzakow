@@ -19,10 +19,10 @@
 <c:forEach items="${allOwners}" var="owner">
     <c:out value="${owner.id}" />
     <c:out value="${owner.firstName}" />
-    <c:out value="${owner.lastName}" />
+    <c:out value="${owner.lastName}" /><br/>
     <c:out value="${owner.city}" />
-    <c:out value="${owner.address}" />
-    <c:out value="${owner.telephoneNumber}" />
+    <c:out value="${owner.address}" /><br/>
+    <c:out value="${owner.telephoneNumber}" /><br/>
     <c:forEach items="${owner.pets}" var="pet">
         <c:out value="${pet.id}"/>
         <c:out value="${pet.name}"/>
@@ -30,12 +30,13 @@
         <c:out value="${pet.petType}"/>
         <a href="/pet/delete-pet/${pet.id}">Usuń</a>
         <a href="/pet/edit-pet/${pet.id}/${owner.id}">Edytuj</a>
+        <a href="/visit/create/${pet.id}">Dodaj wizytę</a>
         <br/>
     </c:forEach>
     <a href="/delete-owner/${owner.id}">Usuń</a>
     <a href="/edit-owner/${owner.id}">Edytuj</a>
     <a href="/pet/create/${owner.id}">Dodaj pupila</a>
-    <br/>
+    <br/><br/><br/>
 </c:forEach>
 
 </body>
