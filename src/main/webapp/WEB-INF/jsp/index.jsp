@@ -10,8 +10,9 @@
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
-
+<img src="/img/pobrane.jpg" width="50%" height="50%">
 ${index.message}
+
 
 </body>
 </html>
